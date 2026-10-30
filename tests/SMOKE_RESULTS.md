@@ -1,6 +1,6 @@
 # PAW LEGENDS: DOG WORLD — Headless Arayuz / Akis Testi
 
-- Tarih: 2026-10-30T06:27:18.151Z
+- Tarih: 2026-10-30T08:03:28.135Z
 - Ortam: node v20.20.2 (minimal DOM taklidi, gercek oyun kodu)
 - Komut: `node tests/smoke_ui.js`
 - Kapsam: 18 ekrani render etme, kasa acma, uretim, 4v4 arena, pazar ilan/alim,

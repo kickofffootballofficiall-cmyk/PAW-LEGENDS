@@ -353,6 +353,7 @@ function managePlayer(code) {
       "<div class='pmStats'><span>Puan: <b>" + Number(j.balance).toLocaleString("tr-TR") + "</b></span>" +
       "<span>Elo: <b>" + j.rating + "</b></span><span>G/S: <b>" + j.wins + "/" + j.losses + "</b></span>" +
       "<span>Durum: <b>" + (j.banned ? "YASAKLI" : j.online ? "ÇEVRİMİÇİ" : "çevrimdışı") + "</b></span>" +
+      "<span>Son görülme: <b>" + (j.lastSeenAt ? new Date(j.lastSeenAt).toLocaleString("tr-TR") : "—") + "</b></span>" +
       "<span>Sunucu kennel: <b>" + (j.dogsList || []).length + " köpek</b></span></div>" +
       "<div class='pmSec'><h4>Sunucu kennel'indeki köpekler (oyuncuya bağlı cihazlara otomatik iner)</h4>" +
       (dogs ? "<table class='pmDogs'><thead><tr><th>Ad</th><th>Irk</th><th>Nadirlik</th><th>Sv</th><th>uid</th><th></th></tr></thead><tbody>" + dogs + "</tbody></table>"

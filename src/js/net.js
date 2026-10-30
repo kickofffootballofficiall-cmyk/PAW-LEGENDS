@@ -44,7 +44,32 @@
       });
     });
   };
+  N.heartbeat = function (cb) {
+    if (!N.online) { if (cb) cb(false, { error: "offline" }); return; }
+    req("POST", "/api/heartbeat", null, cb || function () { });
+  };
+  N.leave = function () {
+    if (!N.online || !N.url || !N.token) return;
+    var u = N.url + "/api/leave";
+    var body = JSON.stringify({ token: N.token });
+    try {
+      if (root.fetch) {
+        fetch(u, { method: "POST", keepalive: true, body: body,
+          headers: { "Content-Type": "application/json", "X-Auth": N.token } })["catch"](function () { });
+        return;
+      }
+    } catch (e) { }
+    try {
+      var x = new XMLHttpRequest();
+      x.open("POST", u, true);
+      x.setRequestHeader("Content-Type", "application/json");
+      x.setRequestHeader("X-Auth", N.token);
+      x.timeout = 2500;
+      x.send(body);
+    } catch (e2) { }
+  };
   N.disconnect = function () {
+    N.leave();
     N.online = false; N.token = null;
     var st = PL.game.state;
     st.online = { mode: "local", server: st.online.server || "", user: null, token: null };

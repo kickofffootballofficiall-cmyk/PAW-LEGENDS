@@ -114,8 +114,9 @@
     G._buildChrome = buildChrome;
     G._tick = setInterval(G.tick, 1000);
     G.tgAutoConnect();
-    root.addEventListener("beforeunload", G.save);
-    document.addEventListener("visibilitychange", function () { if (document.hidden) G.save(); });
+    root.addEventListener("beforeunload", function () { G.save(); PL.net.leave(); });
+    root.addEventListener("pagehide", function () { G.save(); PL.net.leave(); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) { G.save(); PL.net.leave(); } });
   };
   /* Telegram Mini App icinde acildiysa: initData ile otomatik giris + sunucuya baglan.
      Sunucu TG_BOT_TOKEN ile HMAC dogrulamasi yapar; basarisizsa oyun cevrimdisi devam eder. */
@@ -165,6 +166,9 @@
   G.tick = function () {
     if (!G.state) return;
     var st = G.state, now = Date.now();
+    // cevrimici heartbeat: ~30 sn'de bir sunucuya "buradayim" bildir (admin paneli CEVRIMICI gosterir)
+    G._hb = (G._hb || 0) + 1;
+    if (PL.net.online && G._hb % 30 === 1) PL.net.heartbeat();
     // enerji rejenerasyonu
     var regen = E.bal().training.energy_regen_seconds;
     for (var i = 0; i < st.dogs.length; i++) {

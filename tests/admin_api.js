@@ -211,6 +211,23 @@ async function main() {
   r = await req("GET", "/api/me", null, PT3);
   check("56 item maili oyuncuya gitti", (r.j.mail || []).some((m) => m.type === "item" && m.itemId === "civili_tasma" && m.qty === 2));
 
+  // 57-62: heartbeat / leave / admin paneli cevrimici durumu
+  r = await req("POST", "/api/heartbeat", null, PT3);
+  check("57 heartbeat 200 + ok", r.status === 200 && r.j.ok === true);
+  r = await req("GET", "/admin/api/players", null, ADM);
+  let rowN = (r.j.rows || []).find((x) => x.code === NCODE);
+  check("58 heartbeat sonrasi admin listesinde CEVRIMICI", !!rowN && rowN.online === true);
+  r = await req("POST", "/api/leave", null, PT3);
+  check("59 leave 200 + ok", r.status === 200 && r.j.ok === true);
+  r = await req("GET", "/admin/api/players", null, ADM);
+  rowN = (r.j.rows || []).find((x) => x.code === NCODE);
+  check("60 leave sonrasi CEVRIMDISI + lastSeenAt kayitli", !!rowN && rowN.online === false && rowN.lastSeenAt > 0);
+  r = await req("POST", "/api/heartbeat", null);
+  check("61 yetkisiz heartbeat 401", r.status === 401);
+  r = await req("POST", "/api/heartbeat", null, PT3);
+  r = await req("GET", "/admin/api/player?code=" + NCODE, null, ADM);
+  check("62 leave sonrasi heartbeat oyuncuyu yeniden CEVRIMICI yapar", r.j.online === true);
+
   child.kill();
   finish();
 

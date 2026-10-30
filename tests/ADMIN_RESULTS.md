@@ -1,8 +1,8 @@
 # ADMIN API TEST SONUCLARI
 
-2026-10-30T06:28:49.072Z
+2026-10-30T08:03:01.967Z
 
-Gecen: 57 | Kalan: 0
+Gecen: 63 | Kalan: 0
 
 ```
 ✓ 01 sunucu ayaga kalkti
@@ -62,4 +62,10 @@ Gecen: 57 | Kalan: 0
 ✓ 54 oyuncu items kaydinda
 ✓ 55 olmayan esya 404
 ✓ 56 item maili oyuncuya gitti
+✓ 57 heartbeat 200 + ok
+✓ 58 heartbeat sonrasi admin listesinde CEVRIMICI
+✓ 59 leave 200 + ok
+✓ 60 leave sonrasi CEVRIMDISI + lastSeenAt kayitli
+✓ 61 yetkisiz heartbeat 401
+✓ 62 leave sonrasi heartbeat oyuncuyu yeniden CEVRIMICI yapar
 ```

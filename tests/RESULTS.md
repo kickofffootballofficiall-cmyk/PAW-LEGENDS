@@ -1,6 +1,6 @@
 # PAW LEGENDS: DOG WORLD — Otomatik Test Sonuclari (Motor)
 
-- Tarih: 2026-10-30T06:27:14.171Z
+- Tarih: 2026-10-30T08:03:24.157Z
 - Ortam: node v20.20.2 / linux
 - Komut: `node tests/run_tests.js`
 - Kapsam: veri butunlugu (100 irk, 6 rarity, 5 kasa), kasa olasilik dagilimlari,

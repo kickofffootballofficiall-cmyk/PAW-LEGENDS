@@ -70,6 +70,13 @@ function auth(req) {
 }
 function adminAuth(req) { return req.headers["x-admin"] === hmac("admin:" + ADMIN_PASS); }
 function isBanned(u) { return !!(u && u.banned && (u.banned.until === 0 || u.banned.until > Date.now())); }
+/* Cevrimici durumu: son 90 sn icinde heartbeat/istek atmisse ve acikca "ciktim" demediyse */
+function isOnline(u) {
+  if (!u || !u.lastSeenAt) return false;
+  if (u.leftAt && u.leftAt >= u.lastSeenAt) return false;
+  return Date.now() - u.lastSeenAt < 90000;
+}
+function touch(u) { if (!u) return; u.lastSeenAt = Date.now(); if (u.leftAt) delete u.leftAt; }
 function logAdmin(type, code, detail) {
   db.adminLog = db.adminLog || [];
   db.adminLog.unshift({ ts: Date.now(), type: type, code: code || "-", detail: detail || "" });
@@ -183,7 +190,7 @@ const server = http.createServer(async (req, res) => {
       };
     }
     if (String(b.name || "").trim()) db.users[code].name = name;
-    db.users[code].lastSeenAt = Date.now();
+    touch(db.users[code]);
     if (isBanned(db.users[code])) {
       return send(res, 403, { error: "banned", reason: db.users[code].banned.reason || "", until: db.users[code].banned.until });
     }
@@ -243,7 +250,7 @@ const server = http.createServer(async (req, res) => {
       }
       db.tg[tu.id] = code;
     }
-    db.users[code].lastSeenAt = Date.now();
+    touch(db.users[code]);
     if (isBanned(db.users[code])) {
       return send(res, 403, { error: "banned", reason: db.users[code].banned.reason || "", until: db.users[code].banned.until });
     }
@@ -268,7 +275,30 @@ const server = http.createServer(async (req, res) => {
     me.dogs = Number(b.dogs) || 0;
     me.breeds = Number(b.breeds) || 0;
     me.level = Number(b.level) || 1;
-    me.lastSeenAt = Date.now();
+    touch(me);
+    saveDb();
+    return send(res, 200, { ok: true });
+  }
+
+  /* Istemci oyunda kaldigi surece ~30 sn'de bir vurur; admin paneli bunu CEVRIMICI gosterir */
+  if (p === "/api/heartbeat" && req.method === "POST") {
+    const me = auth(req);
+    if (!me) return send(res, 401, { error: "unauthorized" });
+    touch(me);
+    saveDb();
+    return send(res, 200, { ok: true, t: Date.now(), online: true });
+  }
+
+  /* Oyundan cikis/kapanis: soldAt isaretlenir -> aninda cevrimdisi gorunur (lastSeenAt korunur) */
+  if (p === "/api/leave" && req.method === "POST") {
+    const b = await readBody(req);
+    let me = auth(req);
+    if (!me && b && b.token) {
+      for (const code of Object.keys(db.users)) if (tokenFor(code) === b.token) { me = db.users[code]; break; }
+    }
+    if (!me) return send(res, 401, { error: "unauthorized" });
+    me.leftAt = Date.now();
+    if (!me.lastSeenAt) me.lastSeenAt = me.leftAt;
     saveDb();
     return send(res, 200, { ok: true });
   }
@@ -456,7 +486,7 @@ const server = http.createServer(async (req, res) => {
     const adjusted = Math.floor(pps * allowedSec * BAL.offline_efficiency);
     const claimed = Math.floor(Number(b.gain) || 0);
     const ok = claimed <= adjusted + 1;
-    me.lastSeenAt = Date.now();
+    touch(me);
     saveDb();
     return send(res, ok ? 200 : 200, { ok, adjusted, claimed, allowedSec: Math.round(allowedSec), tampered: !ok });
   }
@@ -474,7 +504,7 @@ const server = http.createServer(async (req, res) => {
       const us = Object.values(db.users);
       return send(res, 200, {
         users: us.length,
-        online: us.filter(function (x) { return Date.now() - (x.lastSeenAt || 0) < 120000; }).length,
+        online: us.filter(function (x) { return isOnline(x); }).length,
         banned: us.filter(isBanned).length,
         listings: Object.values(db.listings).filter(function (l) { return !l.sold; }).length,
         ledgerVolume: db.ledger.reduce(function (s, x) { return s + x.price; }, 0),
@@ -489,7 +519,7 @@ const server = http.createServer(async (req, res) => {
           code: x.code, name: x.name, balance: x.balance, rating: x.rating,
           wins: x.wins, losses: x.losses, dogs: x.dogs, breeds: x.breeds, level: x.level,
           lastSeenAt: x.lastSeenAt, createdAt: x.createdAt,
-          online: Date.now() - (x.lastSeenAt || 0) < 120000,
+          online: isOnline(x),
           banned: isBanned(x), banReason: x.banned ? x.banned.reason : "",
           mail: (x.mail || []).filter(function (m) { return !m.read; }).length
         };
@@ -514,7 +544,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, {
         code: usr.code, name: usr.name, balance: usr.balance || 0, rating: usr.rating,
         wins: usr.wins, losses: usr.losses, adminCreated: !!usr.adminCreated,
-        lastSeenAt: usr.lastSeenAt, online: Date.now() - (usr.lastSeenAt || 0) < 120000,
+        lastSeenAt: usr.lastSeenAt, online: isOnline(usr),
         banned: isBanned(usr),
         dogsList: usr.dogsList || [],
         items: usr.items || {},
@@ -688,7 +718,7 @@ function pubUser(u) {
   return {
     code: u.code, name: u.name, rating: u.rating, wins: u.wins, losses: u.losses,
     dogs: u.dogs, breeds: u.breeds, level: u.level, banned: isBanned(u),
-    online: Date.now() - (u.lastSeenAt || 0) < 120000,
+    online: isOnline(u),
     title: u.rating >= 2000 ? "Elit Yetiştirici" : u.rating >= 1500 ? "Arena Kurdu" : "Yetiştirici"
   };
 }
