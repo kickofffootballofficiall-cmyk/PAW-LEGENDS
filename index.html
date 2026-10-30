@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#070a12">
+<meta name="description" content="PAW LEGENDS: DOG WORLD — köpek koleksiyonu, üretim, yetiştirme, 4v4 arena ve oyuncular arası pazar strateji oyunu.">
+<title>PAW LEGENDS: DOG WORLD</title>
+<link rel="icon" href="assets/ui/icon_paw.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="src/css/style.css">
+</head>
+<body data-quality="high">
+  <div id="appFrame">
+    <header id="topBar">
+      <button id="topAvatarBtn" class="topAvatar" aria-label="Profil"><span id="topAvatar"></span></button>
+      <div class="topTitle">PAW <b>LEGENDS</b></div>
+      <div class="topRight">
+        <div class="balanceChip"><img class="ic" src="assets/ui/icon_points.svg" alt=""><b id="topBalance">0</b></div>
+        <div class="ppsChipTop" id="topPps">+0/dk</div>
+        <button id="topBell" class="iconBtn" aria-label="Bildirimler">
+          <img class="ic" src="assets/ui/icon_help.svg" alt="">
+          <span id="topBellCount" class="bellCount"></span>
+        </button>
+      </div>
+    </header>
+    <main id="screenHost"></main>
+    <nav id="bottomNav"></nav>
+  </div>
+  <div id="toastHost"></div>
+
+  <!-- Veri (JSON'lardan otomatik üretilir; file:// uyumluluğu için gömülü) -->
+  <noscript>
+    <div style="padding:28px;color:#e8eefc;font-family:system-ui,sans-serif;background:#070a12;min-height:100vh">
+      <h1 style="margin:0 0 10px">PAW LEGENDS: DOG WORLD</h1>
+      <p>Bu oyun JavaScript gerektirir. Lütfen tarayıcında JavaScript'i etkinleştirip sayfayı yenile.</p>
+    </div>
+  </noscript>
+  <script>
+  /* ---------------------------------------------------------------
+     BASLANGIC KORUMASI (data_bundle/engine'den ONCE calismali)
+     1) localStorage kapaliysa (bazi Android WebView yapilandirmalari,
+        gizli sekme, dosya sistemi kisitlari) bellek ici yedek devreye
+        girer; boylece oyun hicbir durumda patlamaz.
+     2) http(s) uzerinden aciliyorsa service worker kaydedilir
+        (cevrimdisi calisma + PWA kurulumu). file:// ile calismaz.
+     --------------------------------------------------------------- */
+  (function () {
+    "use strict";
+    var usable = false;
+    try { var t = "__paw_probe__"; localStorage.setItem(t, "1"); localStorage.removeItem(t); usable = true; }
+    catch (e) { usable = false; }
+    if (!usable) {
+      var mem = {};
+      var shim = {
+        getItem: function (k) { return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; },
+        setItem: function (k, v) { mem[k] = String(v); },
+        removeItem: function (k) { delete mem[k]; },
+        clear: function () { mem = {}; },
+        key: function (i) { return Object.keys(mem)[i] || null; }
+      };
+      Object.defineProperty(shim, "length", { get: function () { return Object.keys(mem).length; } });
+      try { Object.defineProperty(window, "localStorage", { value: shim, configurable: true }); }
+      catch (e2) { window.localStorage = shim; }
+      window.__PAW_STORAGE_FALLBACK__ = true;
+    }
+    if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () { });
+      });
+    }
+  })();
+  </script>
+  <script src="src/js/core/data_bundle.js"></script>
+  <!-- Çekirdek motor (tarayıcı + Node testleri ortak) -->
+  <script src="src/js/core/engine.js"></script>
+  <!-- Arayüz katmanı -->
+  <script src="src/js/core/i18n.js"></script>
+<script src="src/js/ui/ui.js"></script>
+  <!-- Ekranlar -->
+  <script src="scenes/screens_core.js"></script>
+  <script src="scenes/screens_play.js"></script>
+  <!-- Çevrim içi istemci + uygulama kontrolcüsü -->
+  <script>window.PAW_CONFIG = { apiUrl: "" }; /* bos = ayni sunucu (same-origin). APK icin build_apk.sh SERVER_URL ile doldurur */</script>
+  <script src="src/js/net.js"></script>
+  <script src="src/js/app.js"></script>
+<!-- Telegram Mini App SDK (CDN erisilemezse sessizce yok sayilir; oyun yerel calismaya devam eder) -->
+<script src="https://telegram.org/js/telegram-web-app.js" onerror="window.__tgCdn=0"></script>
+</body>
+</html>

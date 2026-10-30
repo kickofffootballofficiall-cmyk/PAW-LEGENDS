@@ -1,0 +1,17 @@
+{
+  "name": "paw-legends-android",
+  "version": "7.0.0",
+  "private": true,
+  "description": "PAW LEGENDS: DOG WORLD — Android (Capacitor) kabuk projesi. APK uretimi icin android/build_apk.sh veya Gradle yolu kullanilir.",
+  "scripts": {
+    "sync": "bash build_apk.sh --prepare-only",
+    "build:apk": "bash build_apk.sh"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  }
+}

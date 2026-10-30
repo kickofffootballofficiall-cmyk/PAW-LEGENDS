@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAW LEGENDS — Admin Paneli</title>
+<style>
+  :root { --bg:#070a12; --panel:#121a2c; --panel2:#182238; --line:rgba(140,160,210,.18);
+    --gold:#f5c76a; --text:#e9edf7; --muted:#93a0bb; --ok:#43d17c; --err:#ff5c7a; --blue:#3fa2ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(1100px 600px at 50% -10%, #14203c, var(--bg)) fixed; color:var(--text);
+    font:14px/1.5 "Segoe UI", system-ui, Roboto, Arial, sans-serif; }
+  header { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:12px; padding:10px 16px;
+    background:rgba(10,14,26,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  header b { background:linear-gradient(160deg,#ffe9a8,#f5c76a 45%,#a8720c); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:1.5px; }
+  header .sp { flex:1; }
+  .btn { border:1px solid var(--line); background:var(--panel2); color:var(--text); border-radius:12px; padding:8px 14px;
+    font-weight:700; cursor:pointer; }
+  .btn.gold { background:linear-gradient(160deg,#ffe9a8,#f5c76a 45%,#a8720c); color:#241605; border-color:#6d4a08; }
+  .btn.red { background:linear-gradient(160deg,#ff8298,#c22748); color:#2b0410; border-color:#7e1428; }
+  .btn.small { padding:4px 9px; font-size:12px; border-radius:8px; }
+  .btn:disabled { opacity:.45; cursor:not-allowed; }
+  input, textarea, select { background:#0b1120; color:var(--text); border:1px solid var(--line); border-radius:10px; padding:8px 10px; font:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:16px; }
+  .tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+  .tab { padding:8px 16px; border-radius:999px; border:1px solid var(--line); background:var(--panel); cursor:pointer; font-weight:700; color:var(--muted); }
+  .tab.on { background:linear-gradient(160deg,#ffe9a8,#f5c76a 45%,#a8720c); color:#241605; border-color:#6d4a08; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-bottom:16px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:14px; }
+  .card h4 { margin:0 0 4px; color:var(--muted); font-size:12px; letter-spacing:.6px; text-transform:uppercase; }
+  .card div { font-size:24px; font-weight:800; color:var(--gold); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  th, td { padding:8px 10px; text-align:left; border-bottom:1px solid var(--line); font-size:13px; vertical-align:middle; }
+  th { background:var(--panel2); color:var(--muted); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; }
+  tr:last-child td { border-bottom:0; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:800; }
+  .pill.on { background:rgba(67,209,124,.15); color:var(--ok); }
+  .pill.off { background:rgba(147,160,187,.12); color:var(--muted); }
+  .pill.ban { background:rgba(255,92,122,.15); color:var(--err); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0; }
+  .loginBox { max-width:380px; margin:12vh auto; background:var(--panel); border:1px solid rgba(245,199,106,.35);
+    border-radius:20px; padding:26px; display:grid; gap:12px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  .loginBox h1 { margin:0; font-size:20px; background:linear-gradient(160deg,#ffe9a8,#f5c76a 45%,#a8720c);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  #toast { position:fixed; right:16px; bottom:16px; display:grid; gap:8px; z-index:99; }
+  #toast div { background:var(--panel2); border:1px solid var(--line); border-left:4px solid var(--gold);
+    border-radius:12px; padding:10px 14px; box-shadow:0 10px 30px rgba(0,0,0,.5); animation:tin .2s ease; max-width:340px; }
+  @keyframes tin { from { opacity:0; transform:translateY(8px); } }
+  .muted { color:var(--muted); font-size:12px; }
+  .scroll { overflow:auto; max-height:62vh; }
+  code { background:#0b1120; padding:1px 6px; border-radius:6px; }
+</style>
+</head>
+<body>
+<header>
+  <b>PAW LEGENDS — ADMIN</b>
+  <span class="muted" id="srvInfo"></span>
+  <span class="sp"></span>
+  <button class="btn small" id="btnRefresh" onclick="refresh()">Yenile</button>
+  <button class="btn small red" id="btnLogout" style="display:none" onclick="logout()">Çıkış</button>
+</header>
+
+<div class="wrap" id="loginWrap">
+  <div class="loginBox">
+    <h1>Admin Girişi</h1>
+    <p class="muted" style="margin:0">Sunucu yönetici parolası (<code>ADMIN_PASS</code> ortam değişkeni; varsayılan <code>pawlegends-admin</code>).</p>
+    <input id="apiBase" placeholder="API adresi (örn: http://localhost:8787)" value="">
+    <input type="password" id="pass" placeholder="Parola" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn gold" onclick="login()">GİRİŞ</button>
+    <div class="muted" id="loginErr"></div>
+  </div>
+</div>
+
+<div class="wrap" id="panel" style="display:none">
+  <div class="tabs">
+    <div class="tab on" data-t="ov" onclick="tab('ov')">Genel Bakış</div>
+    <div class="tab" data-t="pl" onclick="tab('pl')">Oyuncular</div>
+    <div class="tab" data-t="mk" onclick="tab('mk')">Pazar</div>
+    <div class="tab" data-t="an" onclick="tab('an')">Duyuru</div>
+    <div class="tab" data-t="lg" onclick="tab('lg')">İşlem Kaydı</div>
+  </div>
+
+  <div id="t-ov">
+    <div class="cards" id="ovCards"></div>
+    <div class="card"><h4>Son işlem kaydı</h4><div class="scroll" id="ovLog" style="font-size:13px"></div></div>
+  </div>
+
+  <div id="t-pl" style="display:none">
+    <div class="row">
+      <input id="q" placeholder="İsim veya PAW-KOD ara…" style="flex:1;min-width:220px" oninput="loadPlayers()">
+      <span class="muted" id="plCount"></span>
+    </div>
+    <div class="scroll"><table id="plTable"><thead><tr>
+      <th>Kod</th><th>İsim</th><th>Durum</th><th>Puan</th><th>Elo</th><th>G/S</th><th>Köpek</th><th>Son görülme</th><th style="width:340px">Müdahale</th>
+    </tr></thead><tbody></tbody></table></div>
+  </div>
+
+  <div id="t-mk" style="display:none">
+    <div class="scroll"><table id="mkTable"><thead><tr>
+      <th>İlan</th><th>Satıcı</th><th>Köpek</th><th>Fiyat</th><th>Durum</th><th></th>
+    </tr></thead><tbody></tbody></table></div>
+  </div>
+
+  <div id="t-an" style="display:none">
+    <div class="card">
+      <h4>Tüm oyunculara duyuru gönder</h4>
+      <textarea id="anText" rows="3" style="width:100%" placeholder="Örn: Bu akşam 21.00'de çift puan etkinliği başlıyor!"></textarea>
+      <div class="row"><button class="btn gold" onclick="announce()">DUYUR</button>
+      <span class="muted">Duyuru, oyuncuların ekranında bildirim olarak belirir.</span></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h4>Aktif duyuru</h4><div id="anCur" class="muted">—</div></div>
+  </div>
+
+  <div id="t-lg" style="display:none">
+    <div class="scroll"><table id="lgTable"><thead><tr><th>Zaman</th><th>İşlem</th><th>Hedef</th><th>Detay</th></tr></thead><tbody></tbody></table></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script>
+"use strict";
+var store = (function () {
+  try { var t = window.sessionStorage; t.setItem("_t", "1"); t.removeItem("_t"); return t; }
+  catch (e) { var m = {}; return { getItem: function (k) { return (k in m) ? m[k] : null; }, setItem: function (k, v) { m[k] = String(v); }, removeItem: function (k) { delete m[k]; } }; }
+})();
+var TOK = store.getItem("pawadmin") || "";
+var APIBASE = (store.getItem("pawapi") || "").replace(/\/$/, "");
+function $(id) { return document.getElementById(id); }
+function toast(t) { var d = document.createElement("div"); d.textContent = t; $("toast").appendChild(d); setTimeout(function(){ d.remove(); }, 4200); }
+function api(path, body, cb, method) {
+  var opts = { method: method || (body ? "POST" : "GET"), headers: { "Content-Type": "application/json" } };
+  if (TOK) opts.headers["X-Admin"] = TOK;
+  if (body) opts.body = JSON.stringify(body);
+  fetch(APIBASE + path, opts).then(function (r) { return r.json().then(function (j) { cb(r.ok, j); }); })
+    .catch(function () { cb(false, { error: "network" }); });
+}
+function login() {
+  var b = $("apiBase").value.trim();
+  if (b) { store.setItem("pawapi", b.replace(/\/$/, "")); APIBASE = b.replace(/\/$/, ""); }
+  api("/admin/login", { pass: $("pass").value }, function (ok, j) {
+    if (!ok) { $("loginErr").textContent = "Hatalı parola."; return; }
+    TOK = j.token; store.setItem("pawadmin", TOK); enter();
+  });
+}
+function logout() { store.removeItem("pawadmin"); TOK = ""; location.reload(); }
+function enter() {
+  $("loginWrap").style.display = "none"; $("panel").style.display = ""; $("btnLogout").style.display = "";
+  $("srvInfo").textContent = APIBASE || location.origin;
+  refresh();
+}
+var CUR = "ov";
+function tab(t) {
+  CUR = t;
+  document.querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("on", x.dataset.t === t); });
+  ["ov","pl","mk","an","lg"].forEach(function (k) { $("t-" + k).style.display = (k === t ? "" : "none"); });
+  refresh();
+}
+function refresh() {
+  if (!TOK) return;
+  if (CUR === "ov") loadOverview();
+  if (CUR === "pl") loadPlayers();
+  if (CUR === "mk") loadListings();
+  if (CUR === "an") loadAnnounce();
+  if (CUR === "lg") loadLog();
+}
+function fmtTs(ts) { return ts ? new Date(ts).toLocaleString("tr-TR") : "—"; }
+function loadOverview() {
+  api("/admin/api/overview", null, function (ok, j) {
+    if (!ok) return logout();
+    $("ovCards").innerHTML =
+      card("Kayıtlı oyuncu", j.users) + card("Şu an çevrimiçi", j.online) + card("Yasaklı", j.banned) +
+      card("Aktif ilan", j.listings) + card("Pazar hacmi", j.ledgerVolume.toLocaleString("tr-TR")) +
+      card("Çalışma süresi", Math.floor(j.uptimeSec / 60) + " dk");
+    api("/admin/api/log", null, function (ok2, j2) {
+      $("ovLog").innerHTML = (j2.log || []).slice(0, 8).map(function (l) {
+        return "<div>• " + fmtTs(l.ts) + " — <b>" + l.type + "</b> " + l.code + " " + (l.detail || "") + "</div>";
+      }).join("") || "<div class='muted'>Henüz işlem yok.</div>";
+    });
+  });
+}
+function card(h, v) { return "<div class='card'><h4>" + h + "</h4><div>" + v + "</div></div>"; }
+function loadPlayers() {
+  api("/admin/api/players?q=" + encodeURIComponent($("q").value || ""), null, function (ok, j) {
+    if (!ok) return logout();
+    $("plCount").textContent = j.rows.length + " oyuncu";
+    $("plTable").tBodies[0].innerHTML = j.rows.map(function (r) {
+      return "<tr>" +
+        "<td><code>" + r.code + "</code></td>" +
+        "<td><b>" + esc(r.name) + "</b></td>" +
+        "<td>" + (r.banned ? "<span class='pill ban'>YASAKLI</span>" : (r.online ? "<span class='pill on'>ÇEVRİMİÇİ</span>" : "<span class='pill off'>çevrimdışı</span>")) + "</td>" +
+        "<td>" + r.balance.toLocaleString("tr-TR") + "</td><td>" + r.rating + "</td>" +
+        "<td>" + r.wins + "/" + r.losses + "</td><td>" + r.dogs + "</td>" +
+        "<td class='muted'>" + fmtTs(r.lastSeenAt) + "</td>" +
+        "<td>" +
+          "<button class='btn small gold' onclick=\"act('add_points','" + r.code + "')\">+Puan</button> " +
+          "<button class='btn small' onclick=\"act('send_message','" + r.code + "')\">Mesaj</button> " +
+          (r.banned ? "<button class='btn small' onclick=\"act('unban','" + r.code + "')\">Ban Aç</button> "
+                    : "<button class='btn small red' onclick=\"act('ban','" + r.code + "')\">Banla</button> ") +
+          "<button class='btn small' onclick=\"act('rename','" + r.code + "')\">İsim</button> " +
+          "<button class='btn small' onclick=\"act('set_rating','" + r.code + "')\">Elo</button> " +
+          "<button class='btn small' onclick=\"act('reset_profile','" + r.code + "')\">Sıfırla</button> " +
+          "<button class='btn small red' onclick=\"act('wipe_user','" + r.code + "')\">Sil</button>" +
+        "</td></tr>";
+    }).join("") || "<tr><td colspan='9' class='muted'>Oyuncu yok. Oyuncular oyunda 'Ayarlar → Sunucu' ile bağlanınca burada belirir.</td></tr>";
+  });
+}
+function loadListings() {
+  api("/admin/api/listings", null, function (ok, j) {
+    if (!ok) return logout();
+    $("mkTable").tBodies[0].innerHTML = j.listings.map(function (l) {
+      return "<tr><td><code>" + l.id + "</code></td><td>" + esc(l.sellerName) + " <span class='muted'>" + l.seller + "</span></td>" +
+        "<td>" + esc((l.dog && l.dog.name) || "?") + "</td><td>" + Number(l.price).toLocaleString("tr-TR") + "</td>" +
+        "<td>" + (l.sold ? (l.removedByAdmin ? "<span class='pill ban'>admin kaldırdı</span>" : "<span class='pill off'>satıldı</span>") : "<span class='pill on'>aktif</span>") + "</td>" +
+        "<td>" + (l.sold ? "" : "<button class='btn small red' onclick=\"delListing('" + l.id + "')\">Kaldır</button>") + "</td></tr>";
+    }).join("") || "<tr><td colspan='6' class='muted'>İlan yok.</td></tr>";
+  });
+}
+function loadAnnounce() {
+  api("/admin/api/overview", null, function (ok, j) { if (!ok) return logout(); });
+  fetch(APIBASE + "/api/announce").then(function (r) { return r.json(); }).then(function (j) {
+    $("anCur").textContent = j.announcement ? (fmtTs(j.announcement.ts) + " — " + j.announcement.text) : "—";
+  });
+}
+function loadLog() {
+  api("/admin/api/log", null, function (ok, j) {
+    if (!ok) return logout();
+    $("lgTable").tBodies[0].innerHTML = (j.log || []).map(function (l) {
+      return "<tr><td class='muted'>" + fmtTs(l.ts) + "</td><td><b>" + l.type + "</b></td><td><code>" + l.code + "</code></td><td>" + esc(l.detail || "") + "</td></tr>";
+    }).join("") || "<tr><td colspan='4' class='muted'>Kayıt yok.</td></tr>";
+  });
+}
+function act(type, code) {
+  var body = { type: type, code: code };
+  if (type === "add_points") {
+    body.amount = parseInt(prompt("Eklenecek puan (negatif = düş):", "10000"), 10);
+    if (isNaN(body.amount)) return;
+    body.note = prompt("Not (oyuncuya görünür):", "Admin ödülü") || "Admin ödülü";
+  } else if (type === "send_message") {
+    body.text = prompt("Oyuncuya mesaj:"); if (!body.text) return;
+  } else if (type === "ban") {
+    body.hours = parseFloat(prompt("Ban süresi (saat, 0 = kalıcı):", "24")); if (isNaN(body.hours)) return;
+    body.reason = prompt("Sebep (oyuncuya gösterilir):", "Kural ihlali") || "Kural ihlali";
+  } else if (type === "unban") {
+    if (!confirm(code + " banı açılsın mı?")) return;
+  } else if (type === "rename") {
+    body.name = prompt("Yeni isim:"); if (!body.name) return;
+  } else if (type === "set_rating") {
+    body.rating = parseInt(prompt("Yeni Elo puanı:", "1000"), 10); if (isNaN(body.rating)) return;
+  } else if (type === "reset_profile") {
+    if (!confirm(code + " sunucu profili sıfırlansın mı? (puan/elo/galibiyet)")) return;
+  } else if (type === "wipe_user") {
+    if (!confirm(code + " KALICI olarak silinsin mi? (hesap + ilanlar)")) return;
+  }
+  api("/admin/api/action", body, function (ok, j) {
+    toast(ok ? "✓ " + type + " uygulandı (" + code + ")" : "Hata: " + (j.error || "?"));
+    refresh();
+  });
+}
+function delListing(id) {
+  if (!confirm(id + " ilanını kaldır?")) return;
+  api("/admin/api/action", { type: "del_listing", id: id }, function (ok, j) {
+    toast(ok ? "✓ ilan kaldırıldı" : "Hata: " + (j.error || "?")); loadListings();
+  });
+}
+function announce() {
+  var t = $("anText").value.trim(); if (!t) return;
+  api("/admin/api/action", { type: "announce", text: t }, function (ok, j) {
+    toast(ok ? "✓ duyuru gönderildi" : "Hata: " + (j.error || "?"));
+    $("anText").value = ""; loadAnnounce();
+  });
+}
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+if (TOK) enter(); else { $("loginWrap").style.display = ""; $("apiBase").value = APIBASE || location.origin; }
+setInterval(function () { if (TOK && CUR === "ov") loadOverview(); }, 15000);
+</script>
+</body>
+</html>

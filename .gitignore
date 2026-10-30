@@ -1,0 +1,11 @@
+server/db.json
+server.log
+android/build/
+android/www/
+indir/
+*.zip
+*.apk
+__pycache__/
+tests/results/
+node_modules/
+.github/

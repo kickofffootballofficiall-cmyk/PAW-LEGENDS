@@ -1,0 +1,244 @@
+{
+  "achievements": [
+    {
+      "id": "a_first_dog",
+      "name_tr": "İlk Dost",
+      "desc_tr": "İlk köpeğini edin",
+      "icon": "🐾",
+      "metric": "dogs_owned",
+      "target": 1,
+      "reward_points": 3000,
+      "reward_xp": 30
+    },
+    {
+      "id": "a_collector10",
+      "name_tr": "Koleksiyoner",
+      "desc_tr": "10 farklı köpeğe sahip ol",
+      "icon": "🎖️",
+      "metric": "dogs_owned",
+      "target": 10,
+      "reward_points": 25000,
+      "reward_xp": 200
+    },
+    {
+      "id": "a_collector25",
+      "name_tr": "Usta Yetiştirici",
+      "desc_tr": "25 farklı köpeğe sahip ol",
+      "icon": "🏅",
+      "metric": "dogs_owned",
+      "target": 25,
+      "reward_points": 90000,
+      "reward_xp": 600
+    },
+    {
+      "id": "a_collector50",
+      "name_tr": "Efsane Kennel",
+      "desc_tr": "50 farklı köpeğe sahip ol",
+      "icon": "👑",
+      "metric": "dogs_owned",
+      "target": 50,
+      "reward_points": 350000,
+      "reward_xp": 1800
+    },
+    {
+      "id": "a_catalog50",
+      "name_tr": "Irk Bilimci",
+      "desc_tr": "50 farklı ırk keşfet",
+      "icon": "📖",
+      "metric": "breeds_discovered",
+      "target": 50,
+      "reward_points": 150000,
+      "reward_xp": 900
+    },
+    {
+      "id": "a_catalog100",
+      "name_tr": "Tam Katalog",
+      "desc_tr": "100 ırkın tamamını keşfet",
+      "icon": "🌟",
+      "metric": "breeds_discovered",
+      "target": 100,
+      "reward_points": 2000000,
+      "reward_xp": 8000
+    },
+    {
+      "id": "a_crate10",
+      "name_tr": "Kutucu",
+      "desc_tr": "10 kasa aç",
+      "icon": "📦",
+      "metric": "crates_opened",
+      "target": 10,
+      "reward_points": 15000,
+      "reward_xp": 120
+    },
+    {
+      "id": "a_crate100",
+      "name_tr": "Kasa Ustası",
+      "desc_tr": "100 kasa aç",
+      "icon": "🎁",
+      "metric": "crates_opened",
+      "target": 100,
+      "reward_points": 200000,
+      "reward_xp": 1200
+    },
+    {
+      "id": "a_legend1",
+      "name_tr": "Efsane Avcısı",
+      "desc_tr": "Efsanevi bir köpek elde et",
+      "icon": "⚡",
+      "metric": "legendary_obtained",
+      "target": 1,
+      "reward_points": 50000,
+      "reward_xp": 400
+    },
+    {
+      "id": "a_mythic1",
+      "name_tr": "Mitoloji",
+      "desc_tr": "Mitik bir köpek elde et",
+      "icon": "🔥",
+      "metric": "mythic_obtained",
+      "target": 1,
+      "reward_points": 250000,
+      "reward_xp": 1500
+    },
+    {
+      "id": "a_breed10",
+      "name_tr": "Genetikçi",
+      "desc_tr": "10 yavru üret",
+      "icon": "🧬",
+      "metric": "puppies_bred",
+      "target": 10,
+      "reward_points": 60000,
+      "reward_xp": 450
+    },
+    {
+      "id": "a_breed50",
+      "name_tr": "Soy Ağacı",
+      "desc_tr": "50 yavru üret",
+      "icon": "🌳",
+      "metric": "puppies_bred",
+      "target": 50,
+      "reward_points": 400000,
+      "reward_xp": 2500
+    },
+    {
+      "id": "a_win10",
+      "name_tr": "Arena Çaylağı",
+      "desc_tr": "10 arena savaşı kazan",
+      "icon": "⚔️",
+      "metric": "battles_won",
+      "target": 10,
+      "reward_points": 30000,
+      "reward_xp": 250
+    },
+    {
+      "id": "a_win50",
+      "name_tr": "Arena Şampiyonu",
+      "desc_tr": "50 arena savaşı kazan",
+      "icon": "🛡️",
+      "metric": "battles_won",
+      "target": 50,
+      "reward_points": 250000,
+      "reward_xp": 1600
+    },
+    {
+      "id": "a_win200",
+      "name_tr": "Arena Efsanesi",
+      "desc_tr": "200 arena savaşı kazan",
+      "icon": "🏆",
+      "metric": "battles_won",
+      "target": 200,
+      "reward_points": 1500000,
+      "reward_xp": 7000
+    },
+    {
+      "id": "a_rating1500",
+      "name_tr": "Dereceli",
+      "desc_tr": "1500 arena puanına ulaş",
+      "icon": "📈",
+      "metric": "rating",
+      "target": 1500,
+      "reward_points": 120000,
+      "reward_xp": 800
+    },
+    {
+      "id": "a_rating2000",
+      "name_tr": "Elit Lig",
+      "desc_tr": "2000 arena puanına ulaş",
+      "icon": "💠",
+      "metric": "rating",
+      "target": 2000,
+      "reward_points": 500000,
+      "reward_xp": 3000
+    },
+    {
+      "id": "a_earn1m",
+      "name_tr": "Milyoner",
+      "desc_tr": "Toplam 1.000.000 puan kazan",
+      "icon": "💰",
+      "metric": "points_earned",
+      "target": 1000000,
+      "reward_points": 80000,
+      "reward_xp": 600
+    },
+    {
+      "id": "a_earn100m",
+      "name_tr": "Puankolik",
+      "desc_tr": "Toplam 100.000.000 puan kazan",
+      "icon": "💎",
+      "metric": "points_earned",
+      "target": 100000000,
+      "reward_points": 5000000,
+      "reward_xp": 20000
+    },
+    {
+      "id": "a_market5",
+      "name_tr": "Tüccar",
+      "desc_tr": "Pazarda 5 satış yap",
+      "icon": "🪙",
+      "metric": "market_sales",
+      "target": 5,
+      "reward_points": 45000,
+      "reward_xp": 350
+    },
+    {
+      "id": "a_market25",
+      "name_tr": "Pazar Baronu",
+      "desc_tr": "Pazarda 25 satış yap",
+      "icon": "🏦",
+      "metric": "market_sales",
+      "target": 25,
+      "reward_points": 400000,
+      "reward_xp": 2500
+    },
+    {
+      "id": "a_friend5",
+      "name_tr": "Sosyal",
+      "desc_tr": "5 arkadaş edin",
+      "icon": "🤝",
+      "metric": "friends",
+      "target": 5,
+      "reward_points": 20000,
+      "reward_xp": 150
+    },
+    {
+      "id": "a_streak7",
+      "name_tr": "Sadık Oyuncu",
+      "desc_tr": "7 gün üst üste giriş yap",
+      "icon": "📅",
+      "metric": "login_streak",
+      "target": 7,
+      "reward_points": 60000,
+      "reward_xp": 500
+    },
+    {
+      "id": "a_level50",
+      "name_tr": "Zirve",
+      "desc_tr": "Bir köpeği 50. seviyeye çıkar",
+      "icon": "🚀",
+      "metric": "max_dog_level",
+      "target": 50,
+      "reward_points": 750000,
+      "reward_xp": 4000
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "appId": "com.pawlegends.dogworld",
+  "appName": "PAW LEGENDS: DOG WORLD",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#070a12"
+  },
+  "server": {
+    "androidScheme": "http"
+  }
+}

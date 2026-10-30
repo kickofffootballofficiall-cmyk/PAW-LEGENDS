@@ -1,0 +1,358 @@
+{
+  "items": [
+    {
+      "id": "crate_key_silver",
+      "name_tr": "Gümüş Anahtar",
+      "name_en": "Silver Key",
+      "icon": "assets/ui/icon_key_silver.svg",
+      "kind": "key",
+      "crate": "silver",
+      "desc_tr": "Gümüş Kutu'yu puan harcamadan bir kez açar.",
+      "value": 7000
+    },
+    {
+      "id": "crate_key_gold",
+      "name_tr": "Altın Anahtar",
+      "name_en": "Gold Key",
+      "icon": "assets/ui/icon_key_gold.svg",
+      "kind": "key",
+      "crate": "gold",
+      "desc_tr": "Altın Kutu'yu puan harcamadan bir kez açar.",
+      "value": 38000
+    },
+    {
+      "id": "crate_key_diamond",
+      "name_tr": "Elmas Anahtar",
+      "name_en": "Diamond Key",
+      "icon": "assets/ui/icon_key_diamond.svg",
+      "kind": "key",
+      "crate": "diamond",
+      "desc_tr": "Elmas Kutu'yu puan harcamadan bir kez açar.",
+      "value": 78000
+    },
+    {
+      "id": "xp_potion_s",
+      "name_tr": "Küçük Deneyim İksiri",
+      "name_en": "Small XP Potion",
+      "icon": "assets/ui/icon_potion_xp.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "xp",
+        "amount": 600
+      },
+      "value": 2500,
+      "desc_tr": "Seçilen köpeğe 600 XP kazandırır."
+    },
+    {
+      "id": "xp_potion_m",
+      "name_tr": "Orta Deneyim İksiri",
+      "name_en": "Medium XP Potion",
+      "icon": "assets/ui/icon_potion_xp.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "xp",
+        "amount": 2500
+      },
+      "value": 9000,
+      "desc_tr": "Seçilen köpeğe 2.500 XP kazandırır."
+    },
+    {
+      "id": "xp_potion_l",
+      "name_tr": "Büyük Deneyim İksiri",
+      "name_en": "Large XP Potion",
+      "icon": "assets/ui/icon_potion_xp.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "xp",
+        "amount": 9000
+      },
+      "value": 28000,
+      "desc_tr": "Seçilen köpeğe 9.000 XP kazandırır."
+    },
+    {
+      "id": "food_s",
+      "name_tr": "Temel Mama",
+      "name_en": "Basic Food",
+      "icon": "assets/ui/icon_food.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "energy",
+        "amount": 40
+      },
+      "value": 1200,
+      "desc_tr": "Köpeğin enerjisini 40 puan yeniler."
+    },
+    {
+      "id": "food_m",
+      "name_tr": "Kaliteli Mama",
+      "name_en": "Premium Food",
+      "icon": "assets/ui/icon_food.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "energy",
+        "amount": 100
+      },
+      "value": 3000,
+      "desc_tr": "Köpeğin enerjisini tamamen yeniler."
+    },
+    {
+      "id": "food_l",
+      "name_tr": "Şampiyon Maması",
+      "name_en": "Champion Food",
+      "icon": "assets/ui/icon_food_champion.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "energy",
+        "amount": 100,
+        "xp": 1500
+      },
+      "value": 7500,
+      "desc_tr": "Enerjiyi yeniler ve 1.500 XP verir."
+    },
+    {
+      "id": "booster_prod_s",
+      "name_tr": "Üretim Artırıcı (1 saat)",
+      "name_en": "Production Booster 1h",
+      "icon": "assets/ui/icon_booster.svg",
+      "kind": "booster",
+      "effect": {
+        "type": "production_mult",
+        "amount": 1.5,
+        "hours": 1
+      },
+      "value": 8000,
+      "desc_tr": "1 saat boyunca tüm köpeklerin puan üretimini %50 artırır."
+    },
+    {
+      "id": "booster_prod_m",
+      "name_tr": "Üretim Artırıcı (3 saat)",
+      "name_en": "Production Booster 3h",
+      "icon": "assets/ui/icon_booster.svg",
+      "kind": "booster",
+      "effect": {
+        "type": "production_mult",
+        "amount": 2.0,
+        "hours": 3
+      },
+      "value": 20000,
+      "desc_tr": "3 saat boyunca tüm köpeklerin puan üretimini 2 katına çıkarır."
+    },
+    {
+      "id": "booster_prod_l",
+      "name_tr": "Üretim Artırıcı (12 saat)",
+      "name_en": "Production Booster 12h",
+      "icon": "assets/ui/icon_booster.svg",
+      "kind": "booster",
+      "effect": {
+        "type": "production_mult",
+        "amount": 2.5,
+        "hours": 12
+      },
+      "value": 55000,
+      "desc_tr": "12 saat boyunca tüm köpeklerin puan üretimini 2,5 katına çıkarır."
+    },
+    {
+      "id": "breed_ticket",
+      "name_tr": "Çiftleştirme Bileti",
+      "name_en": "Breeding Ticket",
+      "icon": "assets/ui/icon_ticket.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "breed_cooldown_reset",
+        "amount": 1
+      },
+      "value": 25000,
+      "desc_tr": "Bir köpeğin çiftleştirme bekleme süresini sıfırlar."
+    },
+    {
+      "id": "luck_charm",
+      "name_tr": "Şans Tılsımı",
+      "name_en": "Luck Charm",
+      "icon": "assets/ui/icon_charm.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "luck",
+        "amount": 1.8,
+        "uses": 1
+      },
+      "value": 45000,
+      "desc_tr": "Bir sonraki kasa açılışında yüksek nadirlik şansını 1,8 katına çıkarır."
+    },
+    {
+      "id": "rename_token",
+      "name_tr": "İsim Değişim Kartı",
+      "name_en": "Rename Token",
+      "icon": "assets/ui/icon_rename.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "rename",
+        "amount": 1
+      },
+      "value": 6000,
+      "desc_tr": "Bir köpeğin adını değiştirmeni sağlar."
+    },
+    {
+      "id": "mutation_serum",
+      "name_tr": "Mutasyon Serumu",
+      "name_en": "Mutation Serum",
+      "icon": "assets/ui/icon_serum.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "mutation",
+        "amount": 1
+      },
+      "value": 150000,
+      "desc_tr": "Bir çiftleştirmede mutasyon şansını %100'e çıkarır."
+    },
+    {
+      "id": "battle_banner",
+      "name_tr": "Savaş Sancağı",
+      "name_en": "Battle Banner",
+      "icon": "assets/ui/icon_banner.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "battle_buff",
+        "amount": 1.15,
+        "battles": 3
+      },
+      "value": 30000,
+      "desc_tr": "3 arena savaşı boyunca takımına %15 hasar bonusu verir."
+    },
+    {
+      "id": "energy_drink",
+      "name_tr": "Enerji İçeceği",
+      "name_en": "Energy Drink",
+      "icon": "assets/ui/icon_energy.svg",
+      "kind": "consumable",
+      "effect": {
+        "type": "player_energy",
+        "amount": 60
+      },
+      "value": 2000,
+      "desc_tr": "Oyuncu enerjisini 60 puan yeniler (eğitim için)."
+    },
+    {
+      "id": "kurt_disi",
+      "name_tr": "Kurt Dişi",
+      "name_en": "Wolf Fang",
+      "icon": "assets/ui/icon_sword.svg",
+      "kind": "material",
+      "desc_tr": "Kurt Akını'ndan alınan ganimet; koleksiyoncular yüksek ücret öder.",
+      "value": 25000
+    },
+    {
+      "id": "sans_tilismi",
+      "name_tr": "Şans Tılsımı",
+      "name_en": "Lucky Charm Token",
+      "icon": "assets/ui/icon_charm.svg",
+      "kind": "collectible",
+      "desc_tr": "Koleksiyoncuların gözdesi nadir bir tılsım.",
+      "value": 60000
+    },
+    {
+      "id": "altin_tasma",
+      "name_tr": "Altın Tasma",
+      "name_en": "Golden Collar",
+      "icon": "assets/ui/icon_key_gold.svg",
+      "kind": "collectible",
+      "desc_tr": "Efsanevi bir koleksiyon parçası; mağazada ve 10 davet ödülünde bulunur.",
+      "value": 150000
+    },
+    {
+      "id": "deri_tasma",
+      "name_tr": "Deri Tasma",
+      "name_en": "Leather Collar",
+      "icon": "assets/ui/icon_charm.svg",
+      "kind": "equipment",
+      "desc_tr": "Sağlam deri tasma. Kuşanılan köpeğin gücünü %3 artırır.",
+      "value": 200000,
+      "equip": {
+        "slot": "collar"
+      },
+      "buffs": {
+        "power": 0.03
+      }
+    },
+    {
+      "id": "boyunluk",
+      "name_tr": "Boyunluk",
+      "name_en": "Neck Guard",
+      "icon": "assets/ui/icon_shield.svg",
+      "kind": "equipment",
+      "desc_tr": "Boyun koruyucu. Kuşanılan köpeğin savunmasını %4 artırır.",
+      "value": 300000,
+      "equip": {
+        "slot": "guard"
+      },
+      "buffs": {
+        "defense": 0.04
+      }
+    },
+    {
+      "id": "vitamin",
+      "name_tr": "Vitamin İlacı",
+      "name_en": "Vitamin Tonic",
+      "icon": "assets/ui/icon_serum.svg",
+      "kind": "equipment",
+      "desc_tr": "Düzenli vitamin kürü. Kuşanılan köpek %10 daha fazla XP kazanır.",
+      "value": 150000,
+      "equip": {
+        "slot": "med"
+      },
+      "buffs": {
+        "xp": 0.1
+      }
+    },
+    {
+      "id": "civili_tasma",
+      "name_tr": "Çivili Tasma",
+      "name_en": "Spiked Collar",
+      "icon": "assets/ui/icon_sword.svg",
+      "kind": "equipment",
+      "desc_tr": "Efsanevi çivili tasma! Gücü %10 artırır. Yalnızca Telegram Stars ile alınır.",
+      "value": 1500000,
+      "equip": {
+        "slot": "collar"
+      },
+      "buffs": {
+        "power": 0.1
+      },
+      "stars_only": true,
+      "stars_price": 150
+    },
+    {
+      "id": "civili_boyunluk",
+      "name_tr": "Çivili Boyunluk",
+      "name_en": "Spiked Neck Guard",
+      "icon": "assets/ui/icon_shield.svg",
+      "kind": "equipment",
+      "desc_tr": "Çivili boyun koruma. Savunmayı %12 artırır. Yalnızca Telegram Stars ile alınır.",
+      "value": 2000000,
+      "equip": {
+        "slot": "guard"
+      },
+      "buffs": {
+        "defense": 0.12
+      },
+      "stars_only": true,
+      "stars_price": 200
+    },
+    {
+      "id": "efsane_iksir",
+      "name_tr": "Efsane İksir",
+      "name_en": "Legendary Elixir",
+      "icon": "assets/ui/icon_potion_xp.svg",
+      "kind": "equipment",
+      "desc_tr": "Efsanevi iksir! XP kazancını %30 artırır. Yalnızca Telegram Stars ile alınır.",
+      "value": 1200000,
+      "equip": {
+        "slot": "med"
+      },
+      "buffs": {
+        "xp": 0.3
+      },
+      "stars_only": true,
+      "stars_price": 120
+    }
+  ]
+}

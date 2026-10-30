@@ -1,0 +1,90 @@
+{
+  "order": [
+    "yaygın",
+    "seçkin",
+    "nadir",
+    "çok_nadir",
+    "efsanevi",
+    "mitik"
+  ],
+  "rarities": {
+    "yaygın": {
+      "order": 1,
+      "name_tr": "Yaygın",
+      "name_en": "Common",
+      "color": "#9fb0c4",
+      "color_dark": "#5b6a7d",
+      "glow": "rgba(159,176,196,0.55)",
+      "stat_sum": 300,
+      "production_mult": 1.0,
+      "price_mult": 1.0,
+      "xp_mult": 1.0,
+      "crate_base_weight": 60.0
+    },
+    "seçkin": {
+      "order": 2,
+      "name_tr": "Seçkin",
+      "name_en": "Uncommon",
+      "color": "#43d17c",
+      "color_dark": "#1c7a45",
+      "glow": "rgba(67,209,124,0.55)",
+      "stat_sum": 345,
+      "production_mult": 2.0,
+      "price_mult": 2.4,
+      "xp_mult": 1.25,
+      "crate_base_weight": 28.0
+    },
+    "nadir": {
+      "order": 3,
+      "name_tr": "Nadir",
+      "name_en": "Rare",
+      "color": "#3fa2ff",
+      "color_dark": "#1552a8",
+      "glow": "rgba(63,162,255,0.6)",
+      "stat_sum": 390,
+      "production_mult": 3.6,
+      "price_mult": 5.2,
+      "xp_mult": 1.55,
+      "crate_base_weight": 16.0
+    },
+    "çok_nadir": {
+      "order": 4,
+      "name_tr": "Çok Nadir",
+      "name_en": "Epic",
+      "color": "#b06bff",
+      "color_dark": "#5f2aa8",
+      "glow": "rgba(176,107,255,0.65)",
+      "stat_sum": 435,
+      "production_mult": 6.5,
+      "price_mult": 11.0,
+      "xp_mult": 1.9,
+      "crate_base_weight": 8.0
+    },
+    "efsanevi": {
+      "order": 5,
+      "name_tr": "Efsanevi",
+      "name_en": "Legendary",
+      "color": "#ffb03a",
+      "color_dark": "#a85f06",
+      "glow": "rgba(255,176,58,0.7)",
+      "stat_sum": 485,
+      "production_mult": 12.0,
+      "price_mult": 24.0,
+      "xp_mult": 2.4,
+      "crate_base_weight": 3.0
+    },
+    "mitik": {
+      "order": 6,
+      "name_tr": "Mitik",
+      "name_en": "Mythic",
+      "color": "#ff4a6e",
+      "color_dark": "#8d0f2c",
+      "glow": "rgba(255,74,110,0.75)",
+      "stat_sum": 545,
+      "production_mult": 24.0,
+      "price_mult": 52.0,
+      "xp_mult": 3.0,
+      "crate_base_weight": 1.0
+    }
+  }
+}

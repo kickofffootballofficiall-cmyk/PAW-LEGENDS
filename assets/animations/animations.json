@@ -1,0 +1,23 @@
+{
+  "not": "Bu oyundaki tum animasyonlar CSS @keyframes + JavaScript ile gercek zamanli uretilir; hazir video/GIF dosyasi kullanilmaz. Bu dosya, src/css/style.css icindeki animasyonlarin envanteridir ve hangi ekranda kullanildigini belgeler.",
+  "kaynak": "src/css/style.css",
+  "animasyon_sayisi": 9,
+  "animasyonlar": [
+    { "ad": "screenIn",  "tur": "css-keyframes", "sure_ms": 260, "kullanim": "Tum ekranlar: U.show() sonrasi .screen.entering sinifi ile giris animasyonu", "tetikleyen": "src/js/ui/ui.js -> U.show()" },
+    { "ad": "fadeIn",    "tur": "css-keyframes", "sure_ms": 220, "kullanim": "Liste/kart elemanlarinin yumusak belirmesi (koleksiyon, pazar, liderlik)", "tetikleyen": "src/css/style.css -> .card, .row" },
+    { "ad": "popIn",     "tur": "css-keyframes", "sure_ms": 240, "kullanim": "Modal ve odul kartlarinin ekrana firlamasi", "tetikleyen": "src/js/ui/ui.js -> U.modal()" },
+    { "ad": "shake",     "tur": "css-keyframes", "sure_ms": 900, "kullanim": "Kasa acilisi: kasa sallanma animasyonu (3 asamali siddet)", "tetikleyen": "scenes/screens_play.js -> openCrateFlow()" },
+    { "ad": "burst",     "tur": "css-keyframes", "sure_ms": 620, "kullanim": "Kasa patlamasi: isik halkasi + parcacik etkisi", "tetikleyen": "scenes/screens_play.js -> openCrateFlow()" },
+    { "ad": "shine",     "tur": "css-keyframes", "sure_ms": 2600, "kullanim": "Efsanevi/Mitik kartlarda surekli parlama (rar-efsanevi, rar-mitik cerceveleri)", "tetikleyen": "src/css/style.css -> .dogCard.rar-efsanevi::after" },
+    { "ad": "hitShake",  "tur": "css-keyframes", "sure_ms": 320, "kullanim": "Arena: hasar alan birimin titremesi", "tetikleyen": "scenes/screens_play.js -> playBattle() log oynatimi" },
+    { "ad": "floatUp",   "tur": "css-keyframes", "sure_ms": 900, "kullanim": "Arena: hasar/iyilesme sayilarinin yukari suzulmesi; hub'da +puan bildirimleri", "tetikleyen": "scenes/screens_play.js, src/js/app.js -> collect()" },
+    { "ad": "toastIn",   "tur": "css-keyframes", "sure_ms": 260, "kullanim": "Bildirim balonlarinin (toast) alttan girisi ve .out sinifi ile cikisi", "tetikleyen": "src/js/ui/ui.js -> U.toast()" }
+  ],
+  "javascript_animasyonlari": [
+    { "ad": "countUp", "kaynak": "src/js/ui/ui.js -> U.countUp()", "aciklama": "Bakiye/odul sayilarinin kare kare artmasi (requestAnimationFrame)" },
+    { "ad": "kasa acilis akisi", "kaynak": "scenes/screens_play.js -> openCrateFlow()", "aciklama": "sallama -> titreme siddeti artisi -> patlama -> kart cevrilmesi -> odul ekrani (zamanlanmis adimlar)" },
+    { "ad": "savas log oynatimi", "kaynak": "scenes/screens_play.js -> playBattle()", "aciklama": "BT.simulate() logu tur tur oynatilir: HP cubuklari, hasar sayilari, kritik/iyilesme/kalkan efektleri" },
+    { "ad": "yavru buyume evreleri", "kaynak": "src/js/core/engine.js -> E.stats.stageOf()", "aciklama": "yavru -> genc -> yetiskin -> usta -> yasli; evre stat/uretim carpanlarini ve kart gorunumunu degistirir" }
+  ],
+  "azaltilmis_hareket": "settings.reduceMotion = true ise U.show() gecisleri atlar; CSS tarafinda @media (prefers-reduced-motion: reduce) ile .screenBg ve animasyonlar kapatilir."
+}

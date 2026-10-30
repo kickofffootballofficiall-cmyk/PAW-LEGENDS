@@ -1,0 +1,260 @@
+{
+  "version": 7,
+  "economy": {
+    "start_balance": 30000,
+    "start_dogs": 2,
+    "points_per_second_base": 0.55,
+    "production_formula": "pps = points_per_second_base * rarity.production_mult * (0.60 + level*0.085) * (0.85 + (stamina+power)/520) * size_mod * global_events",
+    "size_mod": {
+      "toy": 0.8,
+      "küçük": 0.9,
+      "orta": 1.0,
+      "büyük": 1.1,
+      "dev": 1.2
+    },
+    "offline_cap_hours": 8,
+    "offline_efficiency": 0.75,
+    "offline_min_seconds": 120,
+    "max_dogs": 60,
+    "collection_bonus_per_dog": 0.004,
+    "collection_bonus_cap": 0.35
+  },
+  "anti_cheat": {
+    "max_forward_jump_seconds": 300,
+    "clock_rollback_penalty": "earnings_zero",
+    "server_verified_online": true,
+    "monotonic_anchor": true,
+    "note": "Yerel modda ileri saat aldatmacasi: kaydedilen son zaman damgasi ile cihaz monotonic saati birlikte kullanilir. Sunucu modunda tum kazanc hesabi sunucu saatiyle yapilir."
+  },
+  "levels": {
+    "max_level": 150,
+    "xp_curve": "xp_needed(level) = round(120 * level^1.45 * 1.055^max(0,level-100))",
+    "xp_base": 120,
+    "xp_exp": 1.45,
+    "post100_xp_mult": 1.055,
+    "level_up_cost": "round(400 * level^1.62 * rarity.price_mult * 0.55 * 1.07^max(0,level-100))",
+    "cost_base": 400,
+    "cost_exp": 1.62,
+    "post100_cost_mult": 1.07,
+    "stat_gain_per_level": 0.011
+  },
+  "training": {
+    "base_cost": 900,
+    "cost_growth_per_point": 1.35,
+    "max_extra_points_per_stat": 40,
+    "energy_cost": 1,
+    "energy_max": 100,
+    "energy_regen_seconds": 180
+  },
+  "breeding": {
+    "base_cost": 4000,
+    "cost_by_rarity_sum": {
+      "2": 1.0,
+      "3": 1.4,
+      "4": 2.0,
+      "5": 3.0,
+      "6": 4.2,
+      "7": 5.8,
+      "8": 7.8,
+      "9": 10.5,
+      "10": 14.0,
+      "11": 18.0,
+      "12": 24.0
+    },
+    "cooldown_minutes_by_rarity": {
+      "yaygın": 2,
+      "seçkin": 4,
+      "nadir": 8,
+      "çok_nadir": 15,
+      "efsanevi": 30,
+      "mitik": 60
+    },
+    "energy_cost": 35,
+    "min_level": 5,
+    "min_age_stage": "yetişkin",
+    "max_age_stage": "yaşlı",
+    "child_iv_sigma": 0.055,
+    "mutation_chance": 0.045,
+    "rare_trait_chance": 0.06,
+    "inbreeding_penalty_per_shared_ancestor": 0.035,
+    "inbreeding_max_penalty": 0.25,
+    "purity_bonus": 0.06,
+    "hybrid_bonus": 0.02,
+    "growth_stages": {
+      "yavru": {
+        "min_hours": 0,
+        "stat_mult": 0.55,
+        "production_mult": 0.3,
+        "can_battle": false
+      },
+      "genç": {
+        "min_hours": 4,
+        "stat_mult": 0.78,
+        "production_mult": 0.65,
+        "can_battle": true
+      },
+      "yetişkin": {
+        "min_hours": 16,
+        "stat_mult": 1.0,
+        "production_mult": 1.0,
+        "can_battle": true
+      },
+      "usta": {
+        "min_hours": 48,
+        "stat_mult": 1.06,
+        "production_mult": 1.15,
+        "can_battle": true
+      },
+      "yaşlı": {
+        "min_hours": 120,
+        "stat_mult": 1.02,
+        "production_mult": 1.05,
+        "can_battle": true
+      }
+    },
+    "allele_rules": {
+      "mask": {
+        "dominance": 0.8,
+        "note": "Melanistik maske baskin"
+      },
+      "merle": {
+        "dominance": 0.55,
+        "note": "Yari baskin; cift merle riski tasir"
+      },
+      "double_merle_risk": 0.25,
+      "double_merle_penalty": 0.12,
+      "white_spotting": {
+        "dominance": 0.25,
+        "note": "Beyaz lekeler çekinik"
+      },
+      "brindle": {
+        "dominance": 0.7
+      },
+      "dilute": {
+        "dominance": 0.3,
+        "note": "Renk açilmasi çekinik"
+      },
+      "long_fur": {
+        "dominance": 0.35
+      },
+      "prick_ear": {
+        "dominance": 0.65
+      },
+      "short_muzzle": {
+        "dominance": 0.4
+      },
+      "blue_eye": {
+        "dominance": 0.45
+      }
+    }
+  },
+  "battle": {
+    "team_size": 4,
+    "turn_order_stat": "speed",
+    "hp_formula": "maxHp = round(70 + stamina*2.1 + defense*0.55 + level*9)",
+    "attack_formula": "atk = round(power*1.25 + intelligence*0.25 + level*2.2)",
+    "defense_formula": "def = round(defense*1.05 + stamina*0.20 + level*1.35)",
+    "speed_formula": "spd = round(speed*1.0 + agility*0.45 + level*0.8)",
+    "damage_formula": "dmg = atk * skill_mult * (1 - def/(def+140)) * rarity_dmg_mult * crit * rand(0.92..1.08) * status_mods",
+    "rarity_dmg_mult": {
+      "yaygın": 1.0,
+      "seçkin": 1.05,
+      "nadir": 1.1,
+      "çok_nadir": 1.16,
+      "efsanevi": 1.23,
+      "mitik": 1.32
+    },
+    "crit_chance_base": 0.06,
+    "crit_chance_from_agility": 0.0009,
+    "crit_mult": 1.65,
+    "flee_chance_from_agility": 0.0006,
+    "reward_win_points": 6500,
+    "reward_loss_points": 1400,
+    "reward_draw_points": 2600,
+    "elo_k_win": 26,
+    "elo_k_loss": 22,
+    "elo_start": 1000,
+    "max_turns": 24,
+    "bot_scaling": "bot_rating = player_rating * (0.82 + 0.36*rand)",
+    "xp_win": 90,
+    "xp_loss": 25
+  },
+  "market": {
+    "fee": 0.05,
+    "min_price": 1000,
+    "max_price": 50000000,
+    "max_active_listings": 6,
+    "listing_duration_hours": 72,
+    "base_price_formula": "breed_market_base * rarity.price_mult * (1 + level*0.045) * (1 + extra_training*0.01) * trait_mult * generation_mult",
+    "trait_mult": {
+      "yok": 1.0,
+      "nadir_ozellik": 1.35,
+      "mutasyon": 1.75,
+      "safkan_sampiyon": 2.2
+    },
+    "local_demo_sellers": 14
+  },
+  "daily": {
+    "quests_per_day": 4,
+    "quest_reroll_cost": 2500,
+    "login_reward_cycle": 7,
+    "login_rewards": [
+      {
+        "day": 1,
+        "type": "points",
+        "amount": 5000,
+        "label": "5.000 puan"
+      },
+      {
+        "day": 2,
+        "type": "item",
+        "item": "food_s",
+        "amount": 2,
+        "label": "2x Temel Mama"
+      },
+      {
+        "day": 3,
+        "type": "points",
+        "amount": 15000,
+        "label": "15.000 puan"
+      },
+      {
+        "day": 4,
+        "type": "item",
+        "item": "booster_prod_m",
+        "amount": 1,
+        "label": "1x Üretim Artırıcı (2s)"
+      },
+      {
+        "day": 5,
+        "type": "points",
+        "amount": 30000,
+        "label": "30.000 puan"
+      },
+      {
+        "day": 6,
+        "type": "item",
+        "item": "crate_key_gold",
+        "amount": 1,
+        "label": "1x Altın Anahtar"
+      },
+      {
+        "day": 7,
+        "type": "crate",
+        "crate": "diamond",
+        "amount": 1,
+        "label": "1x Elmas Kutu (bedava açılış)"
+      }
+    ],
+    "daily_reset_hour_local": 4
+  },
+  "leaderboard": {
+    "size": 100,
+    "metrics": [
+      "balance",
+      "rating",
+      "collection",
+      "level"
+    ]
+  }
+}

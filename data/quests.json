@@ -1,0 +1,150 @@
+{
+  "pool": [
+    {
+      "id": "q_collect",
+      "type": "collect_income",
+      "count": 1,
+      "points": 4500,
+      "xp": 40,
+      "text_tr": "Ürettiğin puanları topla",
+      "text_en": "Collect your produced points"
+    },
+    {
+      "id": "q_crate1",
+      "type": "open_crate",
+      "count": 1,
+      "points": 8000,
+      "xp": 70,
+      "text_tr": "1 kasa aç",
+      "text_en": "Open 1 crate"
+    },
+    {
+      "id": "q_crate3",
+      "type": "open_crate",
+      "count": 3,
+      "points": 18000,
+      "xp": 140,
+      "text_tr": "3 kasa aç",
+      "text_en": "Open 3 crates"
+    },
+    {
+      "id": "q_battle1",
+      "type": "battle_play",
+      "count": 1,
+      "points": 6000,
+      "xp": 60,
+      "text_tr": "1 arena savaşı yap",
+      "text_en": "Play 1 arena battle"
+    },
+    {
+      "id": "q_battlewin",
+      "type": "battle_win",
+      "count": 1,
+      "points": 9000,
+      "xp": 90,
+      "text_tr": "1 arena savaşı kazan",
+      "text_en": "Win 1 arena battle"
+    },
+    {
+      "id": "q_battlewin3",
+      "type": "battle_win",
+      "count": 3,
+      "points": 22000,
+      "xp": 200,
+      "text_tr": "3 arena savaşı kazan",
+      "text_en": "Win 3 arena battles"
+    },
+    {
+      "id": "q_breed",
+      "type": "breed",
+      "count": 1,
+      "points": 14000,
+      "xp": 130,
+      "text_tr": "1 yavru üret",
+      "text_en": "Breed 1 puppy"
+    },
+    {
+      "id": "q_upgrade",
+      "type": "upgrade_dog",
+      "count": 2,
+      "points": 7000,
+      "xp": 65,
+      "text_tr": "2 köpek seviyesi yükselt",
+      "text_en": "Upgrade 2 dogs"
+    },
+    {
+      "id": "q_train",
+      "type": "train_dog",
+      "count": 3,
+      "points": 6500,
+      "xp": 55,
+      "text_tr": "3 eğitim uygula",
+      "text_en": "Train 3 times"
+    },
+    {
+      "id": "q_market_list",
+      "type": "market_list",
+      "count": 1,
+      "points": 7500,
+      "xp": 60,
+      "text_tr": "Pazara 1 ilan ver",
+      "text_en": "List 1 dog on the market"
+    },
+    {
+      "id": "q_market_buy",
+      "type": "market_buy",
+      "count": 1,
+      "points": 9500,
+      "xp": 80,
+      "text_tr": "Pazardan 1 köpek satın al",
+      "text_en": "Buy 1 dog from the market"
+    },
+    {
+      "id": "q_earn",
+      "type": "earn_points",
+      "count": 50000,
+      "points": 11000,
+      "xp": 95,
+      "text_tr": "50.000 puan kazan",
+      "text_en": "Earn 50,000 points"
+    },
+    {
+      "id": "q_feed",
+      "type": "use_item",
+      "count": 2,
+      "points": 5000,
+      "xp": 45,
+      "text_tr": "2 eşya kullan",
+      "text_en": "Use 2 items"
+    },
+    {
+      "id": "q_friend",
+      "type": "add_friend",
+      "count": 1,
+      "points": 6000,
+      "xp": 50,
+      "text_tr": "1 arkadaş ekle",
+      "text_en": "Add 1 friend"
+    },
+    {
+      "id": "q_rare",
+      "type": "obtain_rarity",
+      "rarity": "nadir",
+      "count": 1,
+      "points": 16000,
+      "xp": 150,
+      "text_tr": "Nadir veya üstü bir köpek elde et",
+      "text_en": "Obtain a Rare+ dog"
+    },
+    {
+      "id": "q_epic",
+      "type": "obtain_rarity",
+      "rarity": "çok_nadir",
+      "count": 1,
+      "points": 30000,
+      "xp": 260,
+      "text_tr": "Çok Nadir veya üstü bir köpek elde et",
+      "text_en": "Obtain an Epic+ dog"
+    }
+  ]
+}

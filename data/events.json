@@ -1,0 +1,63 @@
+{
+  "events": [
+    {
+      "id": "ev_golden_weekend",
+      "name_tr": "Altın Hafta Sonu",
+      "name_en": "Golden Weekend",
+      "window": "weekend",
+      "effect": {
+        "production_mult": 2.0,
+        "market_fee": 0.02
+      },
+      "desc_tr": "Cumartesi-Pazar tüm üretim 2 katına çıkar, pazar komisyonu %2'ye düşer."
+    },
+    {
+      "id": "ev_arena_festival",
+      "name_tr": "Arena Festivali",
+      "name_en": "Arena Festival",
+      "window": "weekly",
+      "week_mod": 0,
+      "effect": {
+        "battle_reward_mult": 1.75,
+        "elo_k_mult": 1.3
+      },
+      "desc_tr": "Her 4 haftada bir: arena ödülleri %75 artar, rating değişimi hızlanır."
+    },
+    {
+      "id": "ev_breeding_season",
+      "name_tr": "Çiftleşme Sezonu",
+      "name_en": "Breeding Season",
+      "window": "weekly",
+      "week_mod": 1,
+      "effect": {
+        "breed_cost_mult": 0.6,
+        "breed_cooldown_mult": 0.5,
+        "mutation_chance_bonus": 0.03
+      },
+      "desc_tr": "Her 4 haftada bir: çiftleştirme maliyeti %40, süreler %50 azalır, mutasyon şansı artar."
+    },
+    {
+      "id": "ev_crate_carnival",
+      "name_tr": "Kasa Karnavalı",
+      "name_en": "Crate Carnival",
+      "window": "weekly",
+      "week_mod": 2,
+      "effect": {
+        "crate_price_mult": 0.75,
+        "luck_mult": 1.5
+      },
+      "desc_tr": "Her 4 haftada bir: kasalar %25 indirimli, şans 1,5 kat."
+    },
+    {
+      "id": "ev_night_hunt",
+      "name_tr": "Gece Avı",
+      "name_en": "Night Hunt",
+      "window": "daily_night",
+      "effect": {
+        "offline_efficiency_bonus": 0.25,
+        "production_mult": 1.3
+      },
+      "desc_tr": "Her gece 22:00-06:00 arası üretim %30 artar, çevrimdışı verimlilik %25 yükselir."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "crates": [
+    {
+      "id": "silver",
+      "name_tr": "Gümüş Kutu",
+      "name_en": "Silver Crate",
+      "price": 10000,
+      "image": "assets/crates/crate_silver.webp",
+      "accent": "#c9d4e0",
+      "accent2": "#6b7787",
+      "odds": {
+        "yaygın": 0.6,
+        "seçkin": 0.3,
+        "nadir": 0.085,
+        "çok_nadir": 0.0135,
+        "efsanevi": 0.0014,
+        "mitik": 0.0001
+      },
+      "reward_mix": {
+        "dog": 0.8,
+        "points": 0.14,
+        "item": 0.06
+      },
+      "points_min": 2500,
+      "points_max": 9000,
+      "item_pool": [
+        "xp_potion_s",
+        "food_s",
+        "booster_prod_s"
+      ],
+      "desc_tr": "Başlangıç kasası. Çoğunlukla Yaygın ve Seçkin ırklar çıkar."
+    },
+    {
+      "id": "gold",
+      "name_tr": "Altın Kutu",
+      "name_en": "Gold Crate",
+      "price": 50000,
+      "image": "assets/crates/crate_gold.webp",
+      "accent": "#ffcf5c",
+      "accent2": "#a8720c",
+      "odds": {
+        "yaygın": 0.26,
+        "seçkin": 0.4,
+        "nadir": 0.245,
+        "çok_nadir": 0.07,
+        "efsanevi": 0.0235,
+        "mitik": 0.0015
+      },
+      "reward_mix": {
+        "dog": 0.82,
+        "points": 0.12,
+        "item": 0.06
+      },
+      "points_min": 12000,
+      "points_max": 42000,
+      "item_pool": [
+        "xp_potion_m",
+        "food_m",
+        "booster_prod_m",
+        "breed_ticket"
+      ],
+      "desc_tr": "Dengeli kasa. Nadir ve Çok Nadir ırk şansı belirgin şekilde yüksektir."
+    },
+    {
+      "id": "diamond",
+      "name_tr": "Elmas Kutu",
+      "name_en": "Diamond Crate",
+      "price": 100000,
+      "image": "assets/crates/crate_diamond.webp",
+      "accent": "#8fe3ff",
+      "accent2": "#1d6f9c",
+      "odds": {
+        "yaygın": 0.04,
+        "seçkin": 0.26,
+        "nadir": 0.42,
+        "çok_nadir": 0.205,
+        "efsanevi": 0.07,
+        "mitik": 0.005
+      },
+      "reward_mix": {
+        "dog": 0.85,
+        "points": 0.1,
+        "item": 0.05
+      },
+      "points_min": 30000,
+      "points_max": 95000,
+      "item_pool": [
+        "xp_potion_l",
+        "food_l",
+        "booster_prod_l",
+        "breed_ticket",
+        "luck_charm"
+      ],
+      "desc_tr": "Yüksek seviye kasa. Efsanevi ırk şansı %7'nin üzerindedir."
+    },
+    {
+      "id": "legendary",
+      "name_tr": "Efsanevi Kutu",
+      "name_en": "Legendary Crate",
+      "price": 200000,
+      "image": "assets/crates/crate_legendary.webp",
+      "accent": "#ffb03a",
+      "accent2": "#8d4a04",
+      "odds": {
+        "yaygın": 0.0,
+        "seçkin": 0.05,
+        "nadir": 0.33,
+        "çok_nadir": 0.4,
+        "efsanevi": 0.19,
+        "mitik": 0.03
+      },
+      "reward_mix": {
+        "dog": 0.88,
+        "points": 0.08,
+        "item": 0.04
+      },
+      "points_min": 70000,
+      "points_max": 180000,
+      "item_pool": [
+        "xp_potion_l",
+        "booster_prod_l",
+        "breed_ticket",
+        "luck_charm",
+        "rename_token"
+      ],
+      "desc_tr": "Usta kasası. Yaygın ırk çıkmaz; en az Seçkin, çoğunlukla Nadir+."
+    },
+    {
+      "id": "mythic",
+      "name_tr": "Mitik Kutu",
+      "name_en": "Mythic Crate",
+      "price": 500000,
+      "image": "assets/crates/crate_mythic.webp",
+      "accent": "#ff4a6e",
+      "accent2": "#6d0a22",
+      "odds": {
+        "yaygın": 0.0,
+        "seçkin": 0.0,
+        "nadir": 0.12,
+        "çok_nadir": 0.4,
+        "efsanevi": 0.3,
+        "mitik": 0.18
+      },
+      "reward_mix": {
+        "dog": 0.92,
+        "points": 0.05,
+        "item": 0.03
+      },
+      "points_min": 180000,
+      "points_max": 420000,
+      "item_pool": [
+        "booster_prod_l",
+        "breed_ticket",
+        "luck_charm",
+        "rename_token",
+        "mutation_serum"
+      ],
+      "desc_tr": "Oyunun en değerli kasası. %18 Mitik, %30 Efsanevi ırk şansı."
+    }
+  ]
+}

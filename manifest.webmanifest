@@ -1,0 +1,15 @@
+{
+  "name": "PAW LEGENDS: DOG WORLD",
+  "short_name": "PawLegends",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a12",
+  "theme_color": "#070a12",
+  "lang": "tr",
+  "description": "Köpek koleksiyonu, üretim, yetiştirme, 4v4 arena ve oyuncular arası pazar strateji oyunu.",
+  "icons": [
+    { "src": "assets/ui/icon_paw.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
